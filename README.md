@@ -10,5 +10,8 @@ In your pubspec.yaml dependencies add
         either_option ^0.0.1
 
 # Example
-* [Either](example/either_example.dart)
-* [Option](example/option_example.dart)
+* [Either & Option](example/either_option_example.dart)
+
+# Tests
+* [Either](test/either_test.dart)
+* [Option](test/option_test.dart)

@@ -3,17 +3,17 @@
  */
 abstract class Either<L, R> {
   /**
-   * Projects this Either as a Left.
+   * Projects this [Either] as a [Left]
    */
   LeftProjection get left => LeftProjection(this);
 
   /**
-   * Projects this Either as a Right.
+   * Projects this [Either] as a [Right]
    */
   RightProjection get right => RightProjection(this);
 
   /**
-   * Applies onLeft if this is a Left or onRight if this is a Right
+   * Applies [onLeft] if this is a Left or [onRight] if this is a Right
    * ```
    * // Example : Use of [fold]
    * Either<String, double> divide(int a, int b) {
@@ -30,7 +30,7 @@ abstract class Either<L, R> {
   Z fold<Z>(Z Function(L) onLeft, Z Function(R) onRight);
 
   /**
-   * If this is a Left, then return the left value in Right or vice versa.
+   * If this is a [Left], then return the left value in [Right] or vice versa.
    * ```
    * // Example use of [swap]
    * final Either<String, int> l = Left("left");
@@ -130,6 +130,3 @@ class Right<L, R> extends Either<L, R> {
   @override
   Z fold<Z>(Z Function(L l) onLeft, Z Function(R r) onRight) => onRight(_value);
 }
-
-Either<L, R> left<L, R>(L l) => Left(l);
-Either<L, R> right<L, R>(R r) => Right(r);
