@@ -27,10 +27,7 @@ abstract class Either<L, R> {
    * res1.fold((l) => l, (r) => "Result is $r") // Result is 1.6666666666666667
    *  ```
    */
-  Z fold<Z>(Z Function(L) onLeft, Z Function(R) onRight) {
-    if (isLeft) return onLeft((this as Left<L, R>)._value);
-    return onRight((this as Right<L, R>)._value);
-  }
+  Z fold<Z>(Z Function(L) onLeft, Z Function(R) onRight);
 
   /**
    * If this is a Left, then return the left value in Right or vice versa.
@@ -40,20 +37,22 @@ abstract class Either<L, R> {
    * final Either<int, String> r = l.swap(); // Result: Right("left")
    * ```
    * */
-  Either<R, L> swap() {
-    if (isLeft) return Right<R, L>((this as Left<L, R>)._value);
-    return Left<R, L>((this as Right<L, R>)._value);
-  }
+
+  Either<R, L> swap() => fold((L r) => Right<R, L>((this as Left<L, R>)._value),
+      (R r) => Left<R, L>((this as Right<L, R>)._value));
 
   /**
    * Returns true if this is a right, false otherwise.
    */
-  bool get isRight;
+  bool get isRight => fold((_) => false, (_) => true);
 
   /**
    * Returns true if this is a Left, false otherwise.
    */
-  bool get isLeft;
+  bool get isLeft => !isRight;
+
+  @override
+  String toString() => fold((L l) => "Left($l)", (R r) => "Right($r)");
 }
 
 class LeftProjection<L, R> {
@@ -71,17 +70,14 @@ class LeftProjection<L, R> {
    * b.right.map((_) => (_)); // Either<String, Double> // Right(12.0)
   ```
    */
-  Either<C, R> map<C, R>(C Function(L) f) {
-    if (_either.isLeft) {
-      return Left<C, R>(f(this.value));
-    }
-    return Right<C, R>((_either as Right)._value);
-  }
 
-  Either<C, RR> flatMap<C, RR, R extends RR>(Either<C, RR> Function(L) f) {
-    if (_either.isLeft) return f(this.value);
-    return Right<C, RR>((_either as Right)._value);
-  }
+  Either<C, R> map<C, R>(C Function(L) f) => _either.fold(
+      (L l) => Left<C, R>(f(this.value)),
+      (_) => Right<C, R>((_either as Right)._value));
+
+  Either<C, RR> flatMap<C, RR, R extends RR>(Either<C, RR> Function(L) f) =>
+      _either.fold((L l) => f(this.value),
+          (_) => Right<C, RR>((_either as Right)._value));
 
   L get value => _either.isLeft
       ? (_either as Left<L, R>)._value
@@ -92,17 +88,13 @@ class RightProjection<L, R> {
   final Either<L, R> _either;
   RightProjection(this._either);
 
-  Either<L, C> map<L, C>(C Function(R) f) {
-    if (_either.isRight) {
-      return Right<L, C>(f(this.value));
-    }
-    return Left<L, C>((_either as Left)._value);
-  }
+  Either<L, C> map<L, C>(C Function(R) f) => _either.fold(
+      (_) => Left<L, C>((_either as Left)._value),
+      (R r) => Right<L, C>(f(this.value)));
 
-  Either<LL, C> flatMap<C, LL, L extends LL>(Either<LL, C> Function(R) f) {
-    if (_either.isLeft) return Left<LL, C>((_either as Left)._value);
-    return f(this.value);
-  }
+  Either<LL, C> flatMap<C, LL, L extends LL>(Either<LL, C> Function(R) f) =>
+      _either.fold(
+          (_) => Left<LL, C>((_either as Left)._value), (R r) => f(this.value));
 
   R get value => _either.isLeft
       ? throw Exception("NoSuchElement : Either.right.value on Left")
@@ -115,10 +107,13 @@ class Left<L, R> extends Either<L, R> {
   Left(this._value);
 
   @override
-  bool get isRight => false;
+  Z fold<Z>(Z Function(L) onLeft, Z Function(R) onRight) => onLeft(_value);
 
   @override
-  bool get isLeft => true;
+  bool operator ==(that) => that is Left && that._value == _value;
+
+  @override
+  int get hashCode => _value.hashCode;
 }
 
 class Right<L, R> extends Either<L, R> {
@@ -127,8 +122,14 @@ class Right<L, R> extends Either<L, R> {
   Right(this._value);
 
   @override
-  bool get isRight => true;
+  bool operator ==(that) => that is Right && that._value == _value;
 
   @override
-  bool get isLeft => false;
+  int get hashCode => _value.hashCode;
+
+  @override
+  Z fold<Z>(Z Function(L l) onLeft, Z Function(R r) onRight) => onRight(_value);
 }
+
+Either<L, R> left<L, R>(L l) => Left(l);
+Either<L, R> right<L, R>(R r) => Right(r);
