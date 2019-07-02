@@ -1,0 +1,14 @@
+name: either_option
+description: The simple library for Error Handling with functionnal programming concept.
+version: 0.0.1
+author: cb yannick <cbyannick@gmail.com>
+homepage: https://github.com/cbyad/either_option
+repository: https://github.com/cbyad/either_option
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  test: ^1.6.4
+  
+dev_dependencies:

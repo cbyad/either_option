@@ -1,0 +1,3 @@
+/**
+ * Simple Either monad implementation 
+ */
