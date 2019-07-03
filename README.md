@@ -7,9 +7,11 @@ It aims to allow flutter/dart developpers to use the 2 most popular patterns and
 # Installation
 In your pubspec.yaml dependencies add  
 
-        either_option ^0.0.1
+        either_option: ^1.0.0
 
 # Example
+Uncomment lines in files [repository.dart](example/utils/repository.dart) and [either_option_example.dart](example/either_option_example.dart). I did this to don't add unecessary [http](https://pub.dev/packages/http) dependencies just for 1 example.
+
 * [Either & Option](example/either_option_example.dart)
 
 # Tests

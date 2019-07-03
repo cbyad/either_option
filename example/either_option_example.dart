@@ -4,7 +4,7 @@ import 'model/server_error.dart';
 import 'model/user.dart';
 import 'utils/repository.dart';
 
-// You can combine all functions defined in src/either.dart and src/option.dart
+/// You can combine all functions defined in src/either.dart and src/option.dart
 main() async {
   final Repository repository = Repository();
   print("------Either Example---------");

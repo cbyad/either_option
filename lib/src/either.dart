@@ -1,54 +1,22 @@
-/**
- * Simple Either monad implementation 
- */
+/// Simple Either monad implementation
 abstract class Either<L, R> {
-  /**
-   * Projects this [Either] as a [Left]
-   */
+  /// Projects this [Either] as a [Left]
   LeftProjection<L, R> get left => LeftProjection(this);
 
-  /**
-   * Projects this [Either] as a [Right]
-   */
+  /// Projects this [Either] as a [Right]
   RightProjection<L, R> get right => RightProjection(this);
 
-  /**
-   * Applies [onLeft] if this is a Left or [onRight] if this is a Right
-   * ```
-   * // Example : Use of [fold]
-   * Either<String, double> divide(int a, int b) {
-   *    if (b == 0) return Left("Invalid operation");
-   *    return Right(a / b);
-   *  }
-   * 
-   * final res0 = divide(5, 0);
-   * final res1 = divide(5, 3);
-   * res0.fold((l) => l, (r) => "Result is $r"); // Invalid operation
-   * res1.fold((l) => l, (r) => "Result is $r") // Result is 1.6666666666666667
-   *  ```
-   */
+  /// Applies [onLeft] if this is a Left or [onRight] if this is a Right
   Z fold<Z>(Z Function(L) onLeft, Z Function(R) onRight);
 
-  /**
-   * If this is a [Left], then return the left value in [Right] or vice versa.
-   * ```
-   * // Example use of [swap]
-   * final Either<String, int> l = Left('left');
-   * final Either<int, String> r = l.swap(); // Result: Right('left')
-   * ```
-   * */
-
+  /// If this is a [Left], then return the left value in [Right] or vice versa.
   Either<R, L> swap() => fold((L r) => Right<R, L>((this as Left<L, R>)._value),
       (R r) => Left<R, L>((this as Right<L, R>)._value));
 
-  /**
-   * Returns true if this is a right, false otherwise.
-   */
+  /// Returns true if this is a right, false otherwise.
   bool get isRight => fold((_) => false, (_) => true);
 
-  /**
-   * Returns true if this is a Left, false otherwise.
-   */
+  /// Returns true if this is a Left, false otherwise.
   bool get isLeft => !isRight;
 
   @override
@@ -59,18 +27,6 @@ abstract class Either<L, R> {
 class LeftProjection<L, R> {
   final Either<L, R> _either;
   LeftProjection(this._either);
-
-  /**
-   * ``` 
-   * // Example : Use of [map]
-   * final Either<String, int> a = Left("flower");
-   * final Either<String, int> b = Right(12);
-   * a.left.map((_) => _.length); // Either<int, int> // Left(6)
-   * b.left.map((_) => _.length); // Either<int, int> // Right(12)
-   * a.right.map((_) => _.toDouble()); // Either<String, Double> // Left("flower")
-   * b.right.map((_) => (_)); // Either<String, Double> // Right(12.0)
-  ```
-   */
 
   Either<C, R> map<C, R>(C Function(L) f) => _either.fold(
       (L l) => Left<C, R>(f(this.value)),

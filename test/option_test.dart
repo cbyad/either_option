@@ -1,6 +1,6 @@
 import 'package:either_option/src/either.dart';
 import 'package:either_option/src/option.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   Option<double> safeDivision(int a, int b) {

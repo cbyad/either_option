@@ -1,5 +1,5 @@
 import 'package:either_option/src/either.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final message = "Invalid operation";
