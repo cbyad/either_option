@@ -5,12 +5,12 @@ abstract class Either<L, R> {
   /**
    * Projects this [Either] as a [Left]
    */
-  LeftProjection get left => LeftProjection(this);
+  LeftProjection<L, R> get left => LeftProjection(this);
 
   /**
    * Projects this [Either] as a [Right]
    */
-  RightProjection get right => RightProjection(this);
+  RightProjection<L, R> get right => RightProjection(this);
 
   /**
    * Applies [onLeft] if this is a Left or [onRight] if this is a Right
@@ -33,8 +33,8 @@ abstract class Either<L, R> {
    * If this is a [Left], then return the left value in [Right] or vice versa.
    * ```
    * // Example use of [swap]
-   * final Either<String, int> l = Left("left");
-   * final Either<int, String> r = l.swap(); // Result: Right("left")
+   * final Either<String, int> l = Left('left');
+   * final Either<int, String> r = l.swap(); // Result: Right('left')
    * ```
    * */
 
@@ -52,7 +52,8 @@ abstract class Either<L, R> {
   bool get isLeft => !isRight;
 
   @override
-  String toString() => fold((L l) => "Left($l)", (R r) => "Right($r)");
+  String toString() => fold((L l) => l is String ? "Left('$l')" : "Left($l)",
+      (R r) => r is String ? "Right('$r')" : "Right($r)");
 }
 
 class LeftProjection<L, R> {

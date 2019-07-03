@@ -32,12 +32,12 @@ void main() {
       expect(b.swap(), Left(2));
 
       //map on projection
-      double triple(double val) => val * 3;
+      double onRight(double val) => val * 3;
       int onLeft(String msg) => msg.length;
 
-      expect(a.left.map((l) => onLeft(l)), Left(message.length));
-      expect(a.right.map((l) => onLeft(l)), Left(message));
-      expect(b.right.map((l) => triple(l)), Right(6));
+      expect(a.left.map(onLeft), Left(message.length));
+      expect(a.right.map(onRight), Left(message));
+      expect(b.right.map((l) => onRight(l)), Right(6));
       expect(b.left.map((l) => onLeft(l)), Right(2));
 
       // flatMap
@@ -45,9 +45,9 @@ void main() {
       onLeftEth(String msg) => Left(msg.length);
 
       expect(a.left.flatMap((l) => onLeftEth(l)), Left(message.length));
-      expect(a.right.flatMap((r) => onRigthEth(r)), Left(message));
+      expect(a.right.flatMap(onRigthEth), Left(message));
       expect(b.right.flatMap((r) => onRigthEth(r)), Right(6));
-      expect(b.left.flatMap((l) => onLeftEth(l)), Right(2));
+      expect(b.left.flatMap(onLeftEth), Right(2));
     });
   });
 }

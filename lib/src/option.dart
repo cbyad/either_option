@@ -7,12 +7,12 @@ abstract class Option<A> {
   /**
    * Return [None] Option
    */
-  static Option<A> empty<A>() => none();
+  static Option<A> empty<A>() => _none();
 
   /**
    * Return [None] if null else [Some] of A
    */
-  static Option<A> of<A>(A a) => a != null ? some(a) : none();
+  static Option<A> of<A>(A a) => a != null ? _some(a) : _none();
 
   /**
    * Applies [onNone] if this is a [None] or [onSome] if this is a [Some] of A
@@ -43,12 +43,12 @@ abstract class Option<A> {
   /**
    * Return Some of Application of [f] on [a] inside [Some] if [isDefined] else None
    */
-  Option<Z> map<Z>(Z Function(A a) f) => fold(none, (A a) => some(f(a)));
+  Option<Z> map<Z>(Z Function(A a) f) => fold(_none, (A a) => _some(f(a)));
 
   /**
    * Return Application of [f] on [a] inside [Some] if [isDefined] else `None`
    */
-  Option<Z> flatMap<Z>(Option<Z> Function(A a) f) => fold(none, (A a) => f(a));
+  Option<Z> flatMap<Z>(Option<Z> Function(A a) f) => fold(_none, (A a) => f(a));
 
   /**
    * Return [Left] from Option
@@ -69,7 +69,8 @@ abstract class Option<A> {
       fold(() => Left<L, A>(leftValue), (A a) => Right<L, A>(a));
 
   @override
-  String toString() => fold(() => "None", (A a) => "Some($a)");
+  String toString() =>
+      fold(() => "None", (A a) => a is String ? "Some('$a')" : "Some($a)");
 }
 
 class Some<A> extends Option<A> {
@@ -98,5 +99,5 @@ class None<A> extends Option<A> {
   Z fold<Z>(Z Function() onNone, Z Function(A a) onSome) => onNone();
 }
 
-Option<A> some<A>(A a) => Some(a);
-Option<A> none<A>() => None();
+Option<A> _some<A>(A a) => Some(a);
+Option<A> _none<A>() => None();

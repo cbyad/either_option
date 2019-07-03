@@ -11,5 +11,5 @@ class User {
   }
 
   @override
-  String toString() => "User($id,$username)";
+  String toString() => "User($id,$username,$password)";
 }
