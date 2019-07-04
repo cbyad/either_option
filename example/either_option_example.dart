@@ -3,7 +3,7 @@ import 'package:either_option/src/option.dart';
 
 import 'model/server_error.dart';
 import 'model/user.dart';
-import 'utils/repository.dart';
+import 'repository_example.dart';
 
 /// You can combine all functions defined in src/either.dart and src/option.dart
 main() async {
@@ -18,7 +18,7 @@ main() async {
   print("---------Option Example---------");
   final maybeUser = await repository.getUserOpt(345);
   final userNone = maybeUser.getOrElse(defaultUser);
-  print(userNone); // User(0,ko,ko)
+  print(userNone); // User(0, ko, ko)
 
   print("---------Option Example 2---------");
   String f(A a) => a.toString();

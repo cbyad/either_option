@@ -1,4 +1,8 @@
 # Changelog
+## [1.0.2] - 2019-07-05
+### Changed
+- minors changes : update readme
+
 ## [1.0.1] - 2019-07-03
 ### Changed
 - update readme

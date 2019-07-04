@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
-import '../model/server_error.dart';
-import '../model/user.dart';
+import 'model/server_error.dart';
+import 'model/user.dart';
 
 class Repository {
   // With Either
