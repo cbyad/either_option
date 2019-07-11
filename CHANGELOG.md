@@ -1,4 +1,21 @@
 # Changelog
+## [1.0.6] - 2020-04-08
+### Changed
+- Move http dependancies to example folder
+### Added
+- Contains function in Option
+## [1.0.5] - 2019-10-20
+### Changed
+- Update readme
+### Added
+- Example folder 
+## [1.0.4] - 2019-10-20
+### Removed
+- Dependencies not related to the lib (http)
+- All examples files
+### Changed
+- Make get value private members
+- Update readme
 ## [1.0.3] - 2019-07-11
 ### Added
 - cond function in Either
@@ -8,22 +25,22 @@
 
 ## [1.0.2] - 2019-07-05
 ### Changed
-- minors changes : update readme
+- Minors changes : update readme
 
 ## [1.0.1] - 2019-07-03
 ### Changed
-- update readme
-- make test version compatible with any flutter_test version 
+- Update readme
+- Make test version compatible with any flutter_test version 
 ### Removed
-- all examples commented
+- All examples commented
 
 ## [1.0.0] - 2019-07-03
 ### Changed
-- fix version typo
-- using /// for doc comments
+- Fix version typo
+- Using /// for doc comments
 
 ### Added
-- seperated pubspec.yaml for example
+- Seperated pubspec.yaml for example
 
 ## [0.0.1] - 2019-07-03
 ### Added

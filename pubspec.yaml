@@ -1,6 +1,6 @@
 name: either_option
 description: The simple library for Error Handling with functionnal programming concept
-version: 1.0.3
+version: 1.0.6
 author: cb yannick <cbyannick@gmail.com>
 homepage: https://github.com/cbyad/either_option
 repository: https://github.com/cbyad/either_option
@@ -10,11 +10,8 @@ environment:
 
 dependencies:
   test: ^1.6.0
-  # flutter:
-  #   sdk: flutter
 
 dev_dependencies:
-  http: ^0.12.0+2
   flutter_test:
     sdk: flutter
   

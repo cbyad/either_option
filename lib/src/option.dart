@@ -34,6 +34,9 @@ abstract class Option<A> {
   Option<A> filter(bool Function(A a) predicate) =>
       (this.isEmpty || predicate((this as Some).value)) ? this : _none();
 
+  /// Return [true] if this Option is a Some and value inside equal [candidate]
+  bool contains(A candidate) => isDefined && Some(candidate) == this;
+
   /// Return [true] if this option is nonempty and the predicate returns true Otherwise return [false]
   bool exists(bool Function(A a) predicate) =>
       (this.isDefined && predicate((this as Some).value)) ? true : false;

@@ -81,6 +81,14 @@ void main() {
       expect(Option.of(234).exists((_) => _.isEven), true);
       expect(Option.of(234).exists((_) => _.isOdd), false);
 
+      /// constains
+      expect(Option.of("foo").contains("foo"), true );
+      expect(Option.of("foo").contains("bar"), false );
+      expect(Option.empty().contains("bar"), false );
+      expect(Option.empty().contains(0), false );
+      expect(Option.of(0).contains(0), true );
+      expect(Option.of(0).contains(-1), false );
+
       /// cond
       final String hello = "either_option";
       expect(Option.cond(hello.length < 50, hello.length), Some(hello.length));

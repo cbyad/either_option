@@ -33,14 +33,14 @@ class LeftProjection<L, R> {
   LeftProjection(this._either);
 
   Either<C, R> map<C, R>(C Function(L) f) => _either.fold(
-      (L l) => Left<C, R>(f(this.value)),
+      (L l) => Left<C, R>(f(this._value)),
       (_) => Right<C, R>((_either as Right)._value));
 
   Either<C, RR> flatMap<C, RR, R extends RR>(Either<C, RR> Function(L) f) =>
-      _either.fold((L l) => f(this.value),
+      _either.fold((L l) => f(this._value),
           (_) => Right<C, RR>((_either as Right)._value));
 
-  L get value => _either.isLeft
+  L get _value => _either.isLeft
       ? (_either as Left<L, R>)._value
       : throw Exception("NoSuchElement : Either.left.value on Right");
 }
@@ -51,13 +51,13 @@ class RightProjection<L, R> {
 
   Either<L, C> map<L, C>(C Function(R) f) => _either.fold(
       (_) => Left<L, C>((_either as Left)._value),
-      (R r) => Right<L, C>(f(this.value)));
+      (R r) => Right<L, C>(f(this._value)));
 
   Either<LL, C> flatMap<C, LL, L extends LL>(Either<LL, C> Function(R) f) =>
-      _either.fold(
-          (_) => Left<LL, C>((_either as Left)._value), (R r) => f(this.value));
+      _either.fold((_) => Left<LL, C>((_either as Left)._value),
+          (R r) => f(this._value));
 
-  R get value => _either.isLeft
+  R get _value => _either.isLeft
       ? throw Exception("NoSuchElement : Either.right.value on Left")
       : (_either as Right<L, R>)._value;
 }
