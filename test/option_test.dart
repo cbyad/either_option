@@ -35,36 +35,55 @@ void main() {
       expect(b == d, true);
     });
 
-    test('All useful functions ', () {
+    test('All useful functions', () {
       final a = safeDivision(2, 0);
       final b = safeDivision(4, 2);
 
-      // fold
+      /// fold
       expect(a.fold(() => "ko", (_) => "ok"), "ko");
       expect(b.fold(() => "ko", (_) => "ok"), "ok");
-      // getorElse
+
+      /// getorElse
       expect(a.getOrElse(0), 0);
       expect(b.getOrElse(0), 2);
-      // orElse
+
+      /// orElse
       expect(a.orElse(Some(0)), Some(0));
       expect(b.orElse(Some(0)), Some(2));
-      //map
+
+      /// map
       double triple(double val) => val * 3;
       expect(a.map(triple), None());
       expect(b.map(triple), Some(6));
-      // flatMap
+
+      /// flatMap
       Option<double> tripleOpt(double val) => Some(val * 3);
       expect(a.flatMap(tripleOpt), None());
       expect(b.flatMap(tripleOpt), Some(6));
-      // toLeft
+
+      /// toLeft
       expect(a.toLeft(0), Left(0));
       expect(b.toLeft(0), Left(2));
-      //toRight
+
+      /// toRight
       expect(a.toRight(0), Right(0));
       expect(b.toRight(0), Right(2));
-      //toEither
+
+      /// toEither
       expect(a.toEither(0), Left(0));
       expect(b.toEither(0), Right(2));
+
+      /// filter
+      expect(Option.of(234).filter((_) => _.isEven), Some(234));
+      expect(Option.of(234).filter((_) => _.isOdd), None());
+
+      /// exists
+      expect(Option.of(234).exists((_) => _.isEven), true);
+      expect(Option.of(234).exists((_) => _.isOdd), false);
+
+      /// cond
+      final String hello = "either_option";
+      expect(Option.cond(hello.length < 50, hello.length), Some(hello.length));
     });
   });
 }

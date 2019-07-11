@@ -48,6 +48,11 @@ void main() {
       expect(a.right.flatMap(onRigthEth), Left(message));
       expect(b.right.flatMap((r) => onRigthEth(r)), Right(6));
       expect(b.left.flatMap(onLeftEth), Right(2));
+
+      // cond
+      final String hello = "either_option";
+      final result = Either.cond(hello.length > 50, hello.length, hello);
+      expect(result, Left(hello));
     });
   });
 }

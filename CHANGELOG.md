@@ -1,4 +1,11 @@
 # Changelog
+## [1.0.3] - 2019-07-11
+### Added
+- cond function in Either
+- cond function in Option
+- filter function in Option
+- exists function in Option
+
 ## [1.0.2] - 2019-07-05
 ### Changed
 - minors changes : update readme

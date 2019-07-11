@@ -19,6 +19,10 @@ abstract class Either<L, R> {
   /// Returns true if this is a Left, false otherwise.
   bool get isLeft => !isRight;
 
+  /// If the condition is satify then return [rightValue] in [Right] else [leftValue] in [Left]
+  static Either<L, R> cond<L, R>(bool test, R rightValue, L leftValue) =>
+      test ? Right(rightValue) : Left(leftValue);
+
   @override
   String toString() => fold((L l) => l is String ? "Left('$l')" : "Left($l)",
       (R r) => r is String ? "Right('$r')" : "Right($r)");

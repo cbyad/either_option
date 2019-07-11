@@ -30,6 +30,18 @@ abstract class Option<A> {
   /// Return Application of [f] on [a] inside [Some] if [isDefined] else `None`
   Option<Z> flatMap<Z>(Option<Z> Function(A a) f) => fold(_none, (A a) => f(a));
 
+  /// Return current [Option] if it's nonempty and [predicate] application return true. Otherwise return [None]
+  Option<A> filter(bool Function(A a) predicate) =>
+      (this.isEmpty || predicate((this as Some).value)) ? this : _none();
+
+  /// Return [true] if this option is nonempty and the predicate returns true Otherwise return [false]
+  bool exists(bool Function(A a) predicate) =>
+      (this.isDefined && predicate((this as Some).value)) ? true : false;
+
+  /// If the condition is satify then return [value] in [Some] else None
+  static Option<A> cond<A>(bool test, A value) =>
+      test ? Option.of(value) : _none();
+
   /// Return [Left] from Option
   Either<A, A> toLeft(A caseNone) =>
       fold(() => Left(caseNone), (A a) => Left(a));

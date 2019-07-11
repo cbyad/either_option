@@ -8,7 +8,7 @@ It aims to allow flutter/dart developpers to use the 2 most popular patterns and
 Package link on pub [either_option](https://pub.dev/packages/either_option)
 In your pubspec.yaml dependencies add  
 
-        either_option: ^1.0.2
+        either_option: ^1.0.3
 
 # Overview
 `Either` Represents a value of one of two possible types.
@@ -65,7 +65,9 @@ Functions available :
 | toEither     |     :+1:       |       |
 | Option.empty |     :+1:       |       |
 | Option.of    |     :+1:       |       |
+| filter    |     :+1:       |       |
 | swap         |                |   :+1:|
+| cond         |       :1:      |   :+1:|
 
 
 
