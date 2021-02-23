@@ -3,6 +3,7 @@ version: 1.0.0
 author: cb yannick <cbyannick@gmail.com>
 homepage: https://github.com/cbyad/either_option
 repository: https://github.com/cbyad/either_option
+publish_to: none
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
