@@ -1,5 +1,4 @@
-import 'package:either_option/src/either.dart';
-import 'package:either_option/src/option.dart';
+import 'package:either_option/either_option.dart';
 
 import 'model/server_error.dart';
 import 'model/user.dart';

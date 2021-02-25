@@ -6,7 +6,7 @@ abstract class Option<A> {
   static Option<A> empty<A>() => _none();
 
   /// Return [None] if null else [Some] of A
-  static Option<A> of<A>(A a) => a != null ? _some(a) : _none();
+  static Option<A> of<A>(A? a) => a != null ? _some(a) : _none();
 
   /// Applies [onNone] if this is a [None] or [onSome] if this is a [Some] of A
   Z fold<Z>(Z Function() onNone, Z Function(A a) onSome);
