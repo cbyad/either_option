@@ -1,14 +1,25 @@
 # Changelog
+
+## [2.0.1-dev.1] - 2021-02-26
+### Added
+- Minors changes : update readme
+
+## [2.0.0-dev.1] - 2021-02-26
+### Added
+- Null safety support
+
 ## [1.0.6] - 2020-04-08
 ### Changed
 - Move http dependancies to example folder
 ### Added
 - Contains function in Option
+
 ## [1.0.5] - 2019-10-20
 ### Changed
 - Update readme
 ### Added
 - Example folder 
+
 ## [1.0.4] - 2019-10-20
 ### Removed
 - Dependencies not related to the lib (http)
@@ -16,6 +27,7 @@
 ### Changed
 - Make get value private members
 - Update readme
+
 ## [1.0.3] - 2019-07-11
 ### Added
 - cond function in Either
