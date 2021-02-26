@@ -5,10 +5,13 @@ It aims to allow flutter/dart developpers to use the 2 most popular patterns and
 `Either` and `Option`, mainly used in FP language like Scala, Haskell, OCaml,...
 
 # Installation
+
+Prerelease versions that support null safety
+
 Package link on pub [either_option](https://pub.dev/packages/either_option)
 In your pubspec.yaml dependencies add  
 
-        either_option: ^1.0.6
+       either_option: ^2.0.1-dev.1
 
 # Overview
 ## Either

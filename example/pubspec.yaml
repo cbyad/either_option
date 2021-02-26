@@ -6,12 +6,12 @@ repository: https://github.com/cbyad/either_option
 publish_to: none
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.12.0-29.10.beta <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+1
+  http: ^0.13.0
   either_option:
     path: ../
 
