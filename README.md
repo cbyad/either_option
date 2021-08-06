@@ -20,7 +20,7 @@ By convention we put missing or error value in an instance of `Left` and expecte
 
 For example, we fetch an url from a repository [repository](example/lib/repository_example.dart) to get an *User* details and use `Either<ServerError,User>` :
 
-```scala
+```dart
   Future<Either<ServerError, User>> getUser(int id) async {
     final baseUrl = "https://fakerestapi.azurewebsites.net/api/Users/$id";
 
@@ -39,7 +39,7 @@ For example, we fetch an url from a repository [repository](example/lib/reposito
 ```
 So now to consume result we can use for example `fold` method and say what to do with value :
 
-```scala
+```dart
 main() async {
   final Repository repository = Repository();
 
@@ -55,7 +55,7 @@ main() async {
 `Option` Represents a value of one of two possible types.
 By convention we consider missing value as an instance of `None` and expected success value in an instance of `Some`.
 
-```scala
+```dart
   Future<Option<User>> getUserOpt(int id) async {
     final res = await http.get(baseUrl);
     return Option.cond(

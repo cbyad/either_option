@@ -16,7 +16,7 @@ main() async {
 
   print("---------Option Example---------");
   final maybeUser = await repository.getUserOpt(345);
-  final userNone = maybeUser.getOrElse(defaultUser);
+  final userNone = maybeUser.getOrElse(() => defaultUser);
   print(userNone); // User(0, ko, ko)
 
   print("---------Option Example 2---------");

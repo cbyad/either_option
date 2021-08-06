@@ -18,7 +18,7 @@ abstract class Option<A> {
   bool get isEmpty => !isDefined;
 
   /// Return [a] inside [Some] else  supplied [caseElse] if None
-  A getOrElse(A caseElse) => fold(() => caseElse, (A a) => a);
+  A? getOrElse(A? Function() caseElse) => fold(caseElse, (A a) => a);
 
   /// Return inchanged Option if [Some] else supplied [caseElse] if None
   Option<A> orElse(Option<A> caseElse) =>
