@@ -44,12 +44,12 @@ void main() {
       expect(b.fold(() => "ko", (_) => "ok"), "ok");
 
       /// getorElse
-      expect(a.getOrElse(0), 0);
-      expect(b.getOrElse(0), 2);
+      expect(a.getOrElse(() => 0), 0);
+      expect(b.getOrElse(() => 0), 2);
 
       /// orElse
-      expect(a.orElse(Some(0)), Some(0));
-      expect(b.orElse(Some(0)), Some(2));
+      expect(a.orElse(() => Some("0")), Some("0"));
+      expect(b.orElse(() => Some(0)), Some(2));
 
       /// map
       double triple(double val) => val * 3;
@@ -82,12 +82,12 @@ void main() {
       expect(Option.of(234).exists((_) => _.isOdd), false);
 
       /// constains
-      expect(Option.of("foo").contains("foo"), true );
-      expect(Option.of("foo").contains("bar"), false );
-      expect(Option.empty().contains("bar"), false );
-      expect(Option.empty().contains(0), false );
-      expect(Option.of(0).contains(0), true );
-      expect(Option.of(0).contains(-1), false );
+      expect(Option.of("foo").contains("foo"), true);
+      expect(Option.of("foo").contains("bar"), false);
+      expect(Option.empty().contains("bar"), false);
+      expect(Option.empty().contains(0), false);
+      expect(Option.of(0).contains(0), true);
+      expect(Option.of(0).contains(-1), false);
 
       /// cond
       final String hello = "either_option";

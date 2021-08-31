@@ -9,7 +9,8 @@ import 'model/user.dart';
 class Repository {
   // With Either
   Future<Either<ServerError, User>> getUser(int id) async {
-    final baseUrl = "https://fakerestapi.azurewebsites.net/api/Users/$id";
+    final baseUrl =
+        Uri.parse("https://fakerestapi.azurewebsites.net/api/Users/$id");
 
     User user;
     final res = await http.get(baseUrl);
@@ -27,7 +28,8 @@ class Repository {
 
   // With Option
   Future<Option<User>> getUserOpt(int id) async {
-    final baseUrl = "https://fakerestapi.azurewebsites.net/api/Users/$id";
+    final baseUrl =
+        Uri.parse("https://fakerestapi.azurewebsites.net/api/Users/$id");
 
     User user;
     final res = await http.get(baseUrl);

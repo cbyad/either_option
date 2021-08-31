@@ -18,11 +18,11 @@ abstract class Option<A> {
   bool get isEmpty => !isDefined;
 
   /// Return [a] inside [Some] else  supplied [caseElse] if None
-  A getOrElse(A caseElse) => fold(() => caseElse, (A a) => a);
+  A? getOrElse(A? Function() caseElse) => fold(caseElse, (A a) => a);
 
   /// Return inchanged Option if [Some] else supplied [caseElse] if None
-  Option<A> orElse(Option<A> caseElse) =>
-      fold(() => caseElse, (A a) => this); // or  (A a) => some(a)
+  Option orElse<B>(Option<B> Function() caseElse) =>
+      fold(caseElse, (A a) => this); // or  (A a) => some(a)
 
   /// Return Some of Application of [f] on [a] inside [Some] if [isDefined] else None
   Option<Z> map<Z>(Z Function(A a) f) => fold(_none, (A a) => _some(f(a)));
