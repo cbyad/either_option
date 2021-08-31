@@ -48,8 +48,8 @@ void main() {
       expect(b.getOrElse(() => 0), 2);
 
       /// orElse
-      expect(a.orElse(Some(0)), Some(0));
-      expect(b.orElse(Some(0)), Some(2));
+      expect(a.orElse(() => Some("0")), Some("0"));
+      expect(b.orElse(() => Some(0)), Some(2));
 
       /// map
       double triple(double val) => val * 3;
