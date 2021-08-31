@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.0] - 2021-08-31
+### Changed
+- Lazy getOrElse/orElse method from Option and made it null-safety
+
 ## [2.0.1-dev.1] - 2021-02-26
 ### Added
 - Minors changes : update readme

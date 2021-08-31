@@ -11,7 +11,7 @@ Prerelease versions that support null safety
 Package link on pub [either_option](https://pub.dev/packages/either_option)
 In your pubspec.yaml dependencies add  
 
-       either_option: ^2.0.1-dev.1
+       either_option: ^2.0.0
 
 # Overview
 ## Either
