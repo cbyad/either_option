@@ -2,6 +2,8 @@ import 'package:either_option/src/either.dart';
 
 ///Simple Option monad implementation
 abstract class Option<A> {
+  const Option();
+
   /// Return [None] Option
   static Option<A> empty<A>() => _none();
 
@@ -78,6 +80,8 @@ class Some<A> extends Option<A> {
 }
 
 class None<A> extends Option<A> {
+  const None();
+
   @override
   bool operator ==(that) => that is None;
 
