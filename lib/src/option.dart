@@ -2,6 +2,8 @@ import 'package:either_option/src/either.dart';
 
 ///Simple Option monad implementation
 abstract class Option<A> {
+  const Option();
+
   /// Return [None] Option
   static Option<A> empty<A>() => _none();
 
@@ -17,10 +19,13 @@ abstract class Option<A> {
   /// True if None else false
   bool get isEmpty => !isDefined;
 
-  /// Return [a] inside [Some] else  supplied [caseElse] if None
+  /// Return [a] inside [Some] else supplied [caseElse] if None
   A? getOrElse(A? Function() caseElse) => fold(caseElse, (A a) => a);
 
-  /// Return inchanged Option if [Some] else supplied [caseElse] if None
+  /// Return [a] inside [Some] else null if None
+  A? getOrNull() => fold(() => null, (A a) => a);
+
+  /// Return unchanged Option if [Some] else supplied [caseElse] if None
   Option orElse<B>(Option<B> Function() caseElse) =>
       fold(caseElse, (A a) => this); // or  (A a) => some(a)
 
@@ -78,6 +83,8 @@ class Some<A> extends Option<A> {
 }
 
 class None<A> extends Option<A> {
+  const None();
+
   @override
   bool operator ==(that) => that is None;
 

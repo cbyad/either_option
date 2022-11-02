@@ -43,9 +43,13 @@ void main() {
       expect(a.fold(() => "ko", (_) => "ok"), "ko");
       expect(b.fold(() => "ko", (_) => "ok"), "ok");
 
-      /// getorElse
+      /// getOrElse
       expect(a.getOrElse(() => 0), 0);
       expect(b.getOrElse(() => 0), 2);
+
+      /// getOrNull
+      expect(a.getOrNull(), null);
+      expect(b.getOrNull(), 2);
 
       /// orElse
       expect(a.orElse(() => Some("0")), Some("0"));
